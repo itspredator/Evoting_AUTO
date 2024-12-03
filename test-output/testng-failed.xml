@@ -5,8 +5,19 @@
     <classes>
       <class name="Testfinalpage.TestCustodianPage">
         <methods>
-          <include name="TearDown"/>
-          <include name="testcustodianvoteresponsefile"/>
+          <include name="testctnresolutionbulkfileupload"/>
+          <include name="testshareholderderegistration"/>
+          <include name="testuploadCustodianVotefile"/>
+          <include name="testuploadCustodianVotefileall"/>
+          <include name="testdownloadVoteResponsefile"/>
+          <include name="testuploadcutsodianregfile"/>
+          <include name="testdownloadregresponse"/>
+          <include name="testEvenwiseholding"/>
+          <include name="testuploadVotesplitfile"/>
+          <include name="testloginpages"/>
+          <include name="testcustodainViewReport"/>
+          <include name="testCustodainResolutionFile"/>
+          <include name="testViewcustiodianMfFile"/>
           <include name="setup"/>
         </methods>
       </class> <!-- Testfinalpage.TestCustodianPage -->

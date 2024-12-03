@@ -12,4 +12,6 @@ public interface DatabaseService {
 	public String FetchShareHolderId(String Query) throws SQLException;
 	
 	public int UpdateCommonpassword(String Query) throws SQLException;
+	
+	public String getDematsIdForEntityId(String entityId) throws SQLException;
 }

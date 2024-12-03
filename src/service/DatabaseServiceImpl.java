@@ -80,4 +80,31 @@ public class DatabaseServiceImpl implements DatabaseService{
 		return status;
 	}
 
+
+
+	@Override
+	public String getDematsIdForEntityId(String entityId) throws SQLException {
+		
+		String dematsId = null;
+
+		String query= "select EPT_USER_ID from EVTNG_POA_TBL where EPT_CRT_BY='"+entityId+"' order by  EPT_CRT_DT DESC fetch first 10 rows only";
+		statement = (Statement) connection.createStatement();
+		resultSet = statement.executeQuery(query);
+		
+		
+		while(resultSet.next())
+		{
+			if (dematsId == null) {
+				dematsId = resultSet.getObject("EPT_USER_ID").toString() + ",";
+			}
+			else {
+				dematsId = dematsId  + resultSet.getObject("EPT_USER_ID").toString() +  ",";
+				System.out.println(dematsId);
+			}
+			
+		}
+		
+		return dematsId.trim().substring(0, dematsId.length()-1);
+	}
+
 }

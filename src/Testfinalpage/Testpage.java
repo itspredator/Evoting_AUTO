@@ -13,6 +13,7 @@ import java.util.List;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
@@ -97,6 +98,7 @@ public class Testpage {
 	
    public void mainshr() throws IOException, InterruptedException, AWTException, ClassNotFoundException, SQLException
    {
+		Assert.assertEquals(true, false);
 		
 		testpages();
 		
