@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="3" parallel="classes" name="Suite">
-   <listeners>
-        <listener class-name="utility.MyListener"/>
-    </listeners>
-	<test name="Test"
-		retryAnalyzer="utility.RetryAnalyzer">
+<suite  name="MySuite" thread-count="3" parallel="Test" >
+	<listeners>
+		<listener class-name="utility.MyListener" />
+	</listeners>
+	<test name="Test" retryAnalyzer="utility.RetryAnalyzer">
 
-    <classes>
-       <class name="Testfinalpage.TestCustodianPage" />
-	<!-- <class name="Testfinalpage.testscrutiniserpage"/> <class name="Testfinalpage.Testpage"/> 
-		<class name="scrutiniser.scrutiniserhomepage"/> <class name="Testfinalpage.Testpagemember"/> -->
-</classes>
-</test> <!-- Test -->
+		<classes>
+		<class name="Testfinalpage.Testpage.java" />
+			<!-- <class name="Testfinalpage.TestCustodianPage" />-->
+			<!-- <class name="Testfinalpage.testscrutiniserpage"/> <class name="Testfinalpage.Testpage"/> 
+				<class name="scrutiniser.scrutiniserhomepage"/> <class name="Testfinalpage.Testpagemember"/> -->
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

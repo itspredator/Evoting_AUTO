@@ -41,7 +41,7 @@ public class sharholderfiletoupload extends DatabaseServiceImpl {
 		details = databaseServiceImpl.getDetails(evenNo);
 		
 		
-		System.out.println(sharholderfiletoupload.class);
+		//System.out.println("details: "+details.toString());
 		
 		
 		if (new File("D:\\filetoupload\\output.zip").exists()){
@@ -49,6 +49,9 @@ public class sharholderfiletoupload extends DatabaseServiceImpl {
 		}
 
 		File[] files = new File("D:\\filetoupload\\").listFiles();
+		if (files == null || files.length == 0) {
+		    throw new IOException("No files found to process.");
+		}
 
 
 		while (status) {

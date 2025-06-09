@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 public class Evencreation {
 
 	String ISIN ;
-	String ISIN_Description ;
-	String Issuer ;
 	String Voting_Start_Date ;
 	String Voting_End_Date ;
 	String Voting_Result_Date ;
@@ -77,18 +75,6 @@ public class Evencreation {
 	public void setISIN(String iSIN) {
 		ISIN = iSIN;
 	}
-	public String getISIN_Description() {
-		return ISIN_Description;
-	}
-	public void setISIN_Description(String iSIN_Description) {
-		ISIN_Description = iSIN_Description;
-	}
-	public String getIssuer() {
-		return Issuer;
-	}
-	public void setIssuer(String issuer) {
-		Issuer = issuer;
-	}
 	public String getVoting_Start_Date() {
 		return Voting_Start_Date;
 	}
@@ -111,8 +97,7 @@ public class Evencreation {
 
 	@Override
 	public String toString() {
-		return "Evencreation [ISIN=" + ISIN + ", ISIN_Description=" + ISIN_Description + ", Issuer=" + Issuer
-				+ ", Voting_Start_Date=" + Voting_Start_Date + ", Voting_End_Date=" + Voting_End_Date
+		return "Evencreation [ISIN=" + ISIN + ", Voting_Start_Date=" + Voting_Start_Date + ", Voting_End_Date=" + Voting_End_Date
 				+ ", Voting_Result_Date=" + Voting_Result_Date + ", Cut_Off_Date=" + Cut_Off_Date
 				+ ", General_Meeting_Date=" + General_Meeting_Date + ", Last_date_dispatch=" + Last_date_dispatch
 				+ ", Evoting_Start_Time=" + Evoting_Start_Time + ", Evoting_End_Time=" + Evoting_End_Time

@@ -55,40 +55,34 @@ public class datareader {
 							evencreation.setISIN(df.formatCellValue(cell));
 							break;
 						case 1:
-							evencreation.setIssuer(df.formatCellValue(cell));
-							break;
-						case 2:
-							evencreation.setISIN_Description(df.formatCellValue(cell));
-							break;
-						case 3:
 							evencreation.setVoting_Start_Date(df.formatCellValue(cell));
 							break;
-						case 4:
+						case 2:
 							evencreation.setGeneral_Meeting_Date(df.formatCellValue(cell));
 							break;
-						case 5:
+						case 3:
 							evencreation.setLast_date_dispatch(df.formatCellValue(cell));
 							break;
-						case 6:
+						case 4:
 							evencreation.setVoting_End_Date(df.formatCellValue(cell));
 							break;
-						case 7:
+						case 5:
 							evencreation.setVoting_Result_Date(df.formatCellValue(cell));
 							break;
-						case 8:
+						case 6:
 							evencreation.setCut_Off_Date(df.formatCellValue(cell));
 							break;
-						case 9:
+						case 7:
 							evencreation.setEvoting_Start_Time(df.formatCellValue(cell));
 							break;
-						case 10:
+						case 8:
 							evencreation.setGeneral_Meeting_Start_Time(df.formatCellValue(cell));
 							break;
-						case 11:
+						case 9:
 							evencreation.setEvoting_End_Time(df.formatCellValue(cell));
 							break;
-//						default:
-//							System.out.println("datatype not specified");
+						default:
+							System.out.println("datatype not specified");
 							
 							
 						}
@@ -101,10 +95,10 @@ public class datareader {
 			list.add(evencreation);
 
 		}
+		
+		System.out.println(evencreation.toString());
 		workbook.close();	
 		file.close();
-		System.out.println(evencreation.toString());
-		
 		return list;
 		
 

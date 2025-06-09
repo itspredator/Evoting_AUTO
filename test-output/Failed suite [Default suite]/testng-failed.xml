@@ -5,10 +5,11 @@
     <classes>
       <class name="Testfinalpage.TestCustodianPage">
         <methods>
-          <include name="testshareholderderegistartion"/>
-          <include name="testcustodianvoteresponsefile"/>
+          <include name="testuploadVotesplitfile"/>
           <include name="testCustodainResolutionFile"/>
-          <include name="testcustodianreg"/>
+          <include name="testdownloadVoteResponsefile"/>
+          <include name="testcommonloginpages"/>
+          <include name="testuploadcutsodianregfile"/>
           <include name="setup"/>
         </methods>
       </class> <!-- Testfinalpage.TestCustodianPage -->

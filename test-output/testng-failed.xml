@@ -3,24 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Testfinalpage.TestCustodianPage">
+      <class name="Testfinalpage.Testpage">
         <methods>
-          <include name="testctnresolutionbulkfileupload"/>
-          <include name="testshareholderderegistration"/>
-          <include name="testuploadCustodianVotefile"/>
-          <include name="testuploadCustodianVotefileall"/>
-          <include name="testdownloadVoteResponsefile"/>
-          <include name="testuploadcutsodianregfile"/>
-          <include name="testdownloadregresponse"/>
-          <include name="testEvenwiseholding"/>
-          <include name="testuploadVotesplitfile"/>
-          <include name="testloginpages"/>
-          <include name="testcustodainViewReport"/>
-          <include name="testCustodainResolutionFile"/>
-          <include name="testViewcustiodianMfFile"/>
-          <include name="setup"/>
+          <include name="TestClickOnDownloadEvenWisePinMailerFile"/>
+          <include name="TestUploadShareholderDropdown"/>
+          <include name="TestClickOnDownloadResponseFile"/>
+          <include name="TestEvenFormFill"/>
+          <include name="TestPages"/>
+          <include name="TestRtaFileGeneration"/>
         </methods>
-      </class> <!-- Testfinalpage.TestCustodianPage -->
+      </class> <!-- Testfinalpage.Testpage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -58,6 +58,29 @@ public class DatabaseServiceImpl implements DatabaseService{
 
 		return resultSet.getInt("recordCount");
 	}
+	
+	public int Fileprocessstatus(int processidfrommsg) throws SQLException {
+		
+		
+		// TODO Auto-generated method stub
+		String query = "select BTP_PRCSS_STATUS from btch_prcss_mst where BTP_PRCSS_ID = '" + processidfrommsg + "'";
+		System.out.println("Query printed :" +  query);
+		statement = (Statement) connection.createStatement();
+		resultSet = statement.executeQuery(query);
+		
+		System.out.println("resultSet :" +  resultSet);
+		
+		if (resultSet.next()) {
+	        int status = resultSet.getInt("BTP_PRCSS_STATUS");
+	        System.out.println("Process Status: " + status);
+	        return status;
+	        }
+		
+	        else {
+		    System.out.println("No record found for process ID: " + processidfrommsg);
+		    return -1; // Or handle appropriately
+		}
+	}
 
 
 
@@ -106,5 +129,11 @@ public class DatabaseServiceImpl implements DatabaseService{
 		
 		return dematsId.trim().substring(0, dematsId.length()-1);
 	}
+
+
+
+	
+
+
 
 }

@@ -16,6 +16,7 @@ import org.testng.annotations.Listeners;
 import scrutiniser.scrutiniserhomepage;
 import utility.ConfigReader;
 import utility.DriverFactory;
+import utility.MyListener;
 import utility.loginpage;
 
 @Listeners(utility.MyListener.class)
@@ -49,6 +50,7 @@ public class testscrutiniserpage {
 		System.out.println("even no under setup \t"+even_no);
 		System.out.println(BrowserName);
 		driver = driverFactory.init_driver(BrowserName);
+		MyListener.setDriver(driver);
 		return driver;
 
 	}

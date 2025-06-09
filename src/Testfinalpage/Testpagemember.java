@@ -1,5 +1,6 @@
 package Testfinalpage;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;
@@ -19,8 +20,9 @@ import member.Memberhomepage;
 import service.DatabaseServiceImpl;
 import utility.ConfigReader;
 import utility.DriverFactory;
+import utility.MyListener;
 import utility.loginpage;
-
+@Listeners(utility.MyListener.class)
 public class Testpagemember {
 
 	static DriverFactory driverFactory;
@@ -50,6 +52,7 @@ public class Testpagemember {
 
 		System.out.println(BrowserName);
 		driver = driverFactory.init_driver(BrowserName);
+		MyListener.setDriver(driver);
 		return driver;
 
 	}

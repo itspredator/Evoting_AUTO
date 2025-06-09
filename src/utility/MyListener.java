@@ -1,17 +1,16 @@
 package utility;
 
-import org.testng.ITestListener;
-
-import java.io.IOException;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import java.io.File;
 
 public class MyListener implements ITestListener {
 
@@ -22,18 +21,16 @@ public class MyListener implements ITestListener {
 	public static WebDriver driver;
 
 	// Default constructor
-	public MyListener() throws IOException {
-		//setup();
+	public MyListener() {
 	}
-	
-	public void setup() throws IOException
-	{	
-		ConfigReader configreader = new ConfigReader();
-		driverFactory = new DriverFactory();
-		String BrowserName = 	ConfigReader.getProprty("Browser");
-		driver = driverFactory.init_driver(BrowserName);
+
+	public static WebDriver getDriver() {
+		return driver;
 	}
-	
+
+	public static void setDriver(WebDriver driver) {
+		MyListener.driver = driver;
+	}
 
 	@Override
 	public void onFinish(ITestContext contextFinish) {
@@ -43,7 +40,21 @@ public class MyListener implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext contextStart) {
-		
+
+		String screenshotPath = "D:\\Pinkesh\\Evoting_Total\\defects_snapshot\\";
+
+		File folder = new File(screenshotPath);
+		File[] files = folder.listFiles();
+		if (files != null) {
+			for (File file : files) {
+				if (file.isFile()) {
+					file.delete();
+					System.out.println("Screenshot deleted: " + screenshotPath);
+				}
+			}
+		} else {
+			System.out.println("No Screenshot available: " + screenshotPath);
+		}
 
 		System.out.println("on test start.." + contextStart.getName());
 
@@ -81,7 +92,7 @@ public class MyListener implements ITestListener {
 			test.log(Status.FAIL, "Test case failed: " + result.getName());
 			test.log(Status.FAIL, "Error: " + result.getThrowable());
 			if (driver != null) {
-				
+
 				Capture_Defects def = new Capture_Defects(driver);
 				try {
 					String screenshotPath = "D:\\Pinkesh\\Evoting_Total\\defects_snapshot\\";
@@ -90,7 +101,6 @@ public class MyListener implements ITestListener {
 					e.printStackTrace();
 				}
 			}
-		
 
 		} finally {
 			// Testpage.getDriver().close();

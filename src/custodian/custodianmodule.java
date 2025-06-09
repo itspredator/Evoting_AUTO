@@ -5,6 +5,7 @@ import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
@@ -20,11 +21,13 @@ import org.testng.asserts.SoftAssert;
 import service.DatabaseServiceImpl;
 import utility.ConfigReader;
 import utility.DB2Connect;
+import utility.loginpage;
 
 public class custodianmodule extends DB2Connect {
 
 	WebDriver driver;
-	File file = null;
+	File file;
+	loginpage login;
 	String Filepath = "C:\\Users\\Pinkeshc\\Desktop\\desktop dust\\filedownload";
 	Properties prop;
 	By evtngdropdown = By.xpath("//font[contains(text(),'e-Voting')]");
@@ -66,10 +69,18 @@ public class custodianmodule extends DB2Connect {
 	By choosefilebulkupload = By.xpath("//tbody/tr[1]/td[2]/input[1]");
 	By resolutionuploadsucessalert = By.partialLinkText("File Uploaded Successfully");
 	By Votesplitfiledrpdwn = By.xpath("//a[contains(text(),'Upload Vote File (S)')]");
-	By ViewCustodianResolutionfile=By.xpath("//a[contains(text(),'View Custodian/MF Resolution File')]");
-	By Viewresolutionfiledownloadtbl=By.xpath("//tbody/tr[2]/td[1]/table[2]");
+	By ViewCustodianResolutionfile = By.xpath("//a[contains(text(),'View Custodian/MF Resolution File')]");
+	By Viewresolutionfiledownloadtbl = By.xpath("//tbody/tr[2]/td[1]/table[2]");
+	By exportButtonview = By.xpath("//tbody/tr[10]//td//input[@id='searchButton']");
+
 	public custodianmodule(WebDriver driver) {
 		this.driver = driver;
+		login = new loginpage(driver);
+	}
+
+	public void commonloginpages()
+			throws IOException, InterruptedException, AWTException, ClassNotFoundException, SQLException {
+		login.login("CTN1", "nsdl@12345", "Custodian");
 	}
 
 	public void uploadcutsodianregfile() throws InterruptedException {
@@ -206,15 +217,19 @@ public class custodianmodule extends DB2Connect {
 		driver.findElement(UploadcustodianResolutionDrpDwn).click();
 		WebElement dpid = driver.findElement(inputboxdpid);
 		dpid.click();
-		dpid.sendKeys("IN300167");
+		String DPID = "IN300167";
+		dpid.sendKeys(DPID);
 		WebElement Clid = driver.findElement(inputboxclientid);
+		String CLID = "10151302";
 		Clid.click();
-		Clid.sendKeys("10151302");
+		Clid.sendKeys(CLID);
+
 		String filepath = "C:\\Users\\Pinkeshc\\Downloads\\IN300167_10151302.pdf";
 		// filename and and file format should be validated.
 		String fileFormatMessage = "Selected file is in .pdf Format";
 		String wrongdpidcidmessage = "User is not Present in e-Voting System";
-		String uploadsucessmsg = "File Uploaded Successfully";
+		String uploadsucessmsg = "File Uploaded Successfully" + DPID + "_" + CLID + ".pdf";
+		System.out.println(uploadsucessmsg);
 		File file = new File(filepath);
 		long fileSizeInBytes = file.length();
 		System.out.println("File size: " + fileSizeInBytes + " bytes");
@@ -282,46 +297,51 @@ public class custodianmodule extends DB2Connect {
 		}
 
 	}
-	public void uploadVotesplitfile()
-	{
+
+	public void uploadVotesplitfile() {
 		driver.findElement(evtngdropdownupmenu).click();
 		driver.findElement(Votesplitfiledrpdwn).click();
-		String actualpage=driver.getTitle();
+		String actualpage = driver.getTitle();
 		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(actualpage, "Custodian Split Vote Upload");
 		driver.findElement(choosefile).sendKeys("E:\\SurajSanity\\SurajSanity\\CustodianVote2\\CustodianVote2 (2).zip");
 		driver.findElement(CommonSubmitBtn).click();
 		String actualalert = driver.findElement(resolutionuploadsucessalert).getText();
-		System.out.println("alert after file uploading" + actualalert);
+		System.out.println("alert after file uploading" + actualalert.substring(0, 26));
+
 		String uploadsucessmsg = "File Uploaded Successfully";
 		sa.assertEquals(actualalert, uploadsucessmsg);
 		sa.assertAll();
-		
-		
+
 	}
-	public void ViewcustiodianMfFile() throws AWTException, InterruptedException
-	{
+
+	public void ViewcustiodianMfFile() throws AWTException, InterruptedException {
 		driver.findElement(evtngdropdownupmenu).click();
 		driver.findElement(ViewCustodianResolutionfile).click();
-		String actualpage=driver.getTitle();
+		String actualpage = driver.getTitle();
 		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(actualpage, "Resolution Download");
-		WebElement tabledata=driver.findElement(Viewresolutionfiledownloadtbl);
+		WebElement tabledata = driver.findElement(Viewresolutionfiledownloadtbl);
 		List<WebElement> rows = tabledata.findElements(By.tagName("tr"));
 		int rowsno = rows.size();
-		System.out.println("no of data availbale in the table"+rowsno);
+		System.out.println("no of data availbale in the table" + rowsno);
 		driver.findElement(By.xpath("//tbody/tr[7]/td[3]/a[1]")).click();
 		Thread.sleep(3000);
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
-		driver.findElement(By.xpath("//tbody/tr[10]/[button]")).click();
-		
-		
-		
-		
-		
-		
+		Thread.sleep(4000);
+		driver.findElement(exportButtonview).click();
+		Thread.sleep(4000);
+		Robot robot1 = new Robot();
+		robot1.keyPress(KeyEvent.VK_ENTER);
+		robot1.keyRelease(KeyEvent.VK_ENTER);
+
 	}
-	
+
+	/*public void commonloginpages1() {
+		// TODO Auto-generated method stub
+
+	}*/
+
 }

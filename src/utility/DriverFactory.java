@@ -13,7 +13,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 	public WebDriver driver;
-	String downaloadirectory="C:\\Users\\Pinkeshc\\Desktop\\desktop dust\\filedownload";
+	String downloadirectory="C:\\Users\\Pinkeshc\\Desktop\\desktop dust\\filedownload";
 	// use of java 8 feature thread local
 	//public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
@@ -24,7 +24,7 @@ public class DriverFactory {
 	public WebDriver init_driver(String browser) 
 	{
 
-		if (browser.equals("Chrome")) {
+		if (browser.equalsIgnoreCase("Chrome")) {
 			System.out.println("Browser name: " + browser + " Selected");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options=new ChromeOptions();
@@ -32,7 +32,7 @@ public class DriverFactory {
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS,true);
-			options.addArguments("download.default_directory=" +downaloadirectory);
+			options.addArguments("download.default_directory=" +downloadirectory);
 			options.addArguments("download.prompt_for_download=false"); // Disable the download prompt
 			options.addArguments("download.directory_upgrade=true");   
 			//String path=System.getProperty("user.dir");

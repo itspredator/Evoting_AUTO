@@ -10,9 +10,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 
-import Testfinalpage.TestCustodianPage;
-import Testfinalpage.Testpage;
-
 
 
 public class Capture_Defects {
@@ -29,7 +26,7 @@ public class Capture_Defects {
 
         //Convert web driver object to TakeScreenshot
 		
-		System.out.println("public static void takeSnapShot(String fileWithPath, ITestResult result) throws Exception{}");
+	
 
         TakesScreenshot scrShot =((TakesScreenshot) driver);
 
@@ -37,7 +34,7 @@ public class Capture_Defects {
         LocalDateTime now = LocalDateTime.now();
         
         // Define the format
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd:MM:yy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd:MM:yyyy");
         
         // Format the current date-time to the desired format
         String formattedDate = now.format(formatter);
@@ -46,12 +43,15 @@ public class Capture_Defects {
 
             //Move image file to new destination
 
-                File DestFile=new File(fileWithPath + result.getName() + "_" +formattedDate+ ".png");
+                File DestFile=new File(fileWithPath + result.getName() + "_" +formattedDate.replace(":", "_")+ ".png");
 
+                
+//            	System.out.println("SrcFile : " + SrcFile);
+//            	System.out.println("DestFile : " + DestFile);
                 //Copy file at destination
 
                 FileUtils.copyFile(SrcFile, DestFile);
-
+                
     }
 
 }
